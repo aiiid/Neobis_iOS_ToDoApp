@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="116.79389312977099" y="3.5211267605633805"/>
         </scene>
-        <!--Add Task View Controller-->
+        <!--addTaskVC-->
         <scene sceneID="SnA-fU-5nV">
             <objects>
-                <viewController id="EgW-OM-uP0" customClass="AddTaskViewController" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addTaskVC" title="addTaskVC" id="EgW-OM-uP0" customClass="AddTaskViewController" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qnn-Ph-aXH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,6 +144,7 @@
                     <navigationItem key="navigationItem" id="Hvg-pa-ct0"/>
                     <connections>
                         <outlet property="taskDescriptionView" destination="tZX-fu-mqY" id="Vwm-XN-rSo"/>
+                        <outlet property="taskTitleTextField" destination="FU4-6r-ZfD" id="Ujp-Gf-Wue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Aw-MW-oT2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

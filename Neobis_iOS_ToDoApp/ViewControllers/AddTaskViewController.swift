@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import CoreData
+
+protocol AddTaskDelegate: AnyObject {
+    func didSaveTask(title: String, description: String, isDone: Bool)
+}
 
 class AddTaskViewController: UIViewController {
 
     @IBOutlet weak var taskDescriptionView: UITextView!
-    
+    @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var deleteButton: UIButton!
+    
+    weak var delegate: AddTaskDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +67,11 @@ class AddTaskViewController: UIViewController {
     
     
     @objc func saveTapped(){
-        print("save tapped")
+        if let title = taskTitleTextField.text {
+            delegate?.didSaveTask(title: title, description: taskDescriptionView.text, isDone: false)
+        }
+
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func cancelTapped(){
@@ -69,7 +81,6 @@ class AddTaskViewController: UIViewController {
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension AddTaskViewController: UITextViewDelegate{

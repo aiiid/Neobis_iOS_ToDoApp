@@ -18,6 +18,7 @@
 		E238F6642BFA059D00A169D5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6632BFA059D00A169D5 /* RoundedButton.swift */; };
 		E238F66A2BFA37C800A169D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6692BFA37C800A169D5 /* Constants.swift */; };
 		E238F66C2BFA37F700A169D5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F66B2BFA37F700A169D5 /* Extension.swift */; };
+		E238F66F2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E238F66D2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E238F6632BFA059D00A169D5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		E238F6692BFA37C800A169D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E238F66B2BFA37F700A169D5 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E238F66E2BFB4E9100A169D5 /* TasksDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TasksDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		E238F6492BF8DF2300A169D5 /* Neobis_iOS_ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				E238F6702BFB4F9500A169D5 /* DataModel */,
 				E238F6682BFA37BC00A169D5 /* Utilities */,
 				E238F6672BFA369800A169D5 /* CustomClasses */,
 				E238F6652BFA05A300A169D5 /* ViewControllers */,
@@ -104,6 +107,14 @@
 				E238F6692BFA37C800A169D5 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E238F6702BFB4F9500A169D5 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				E238F66D2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E238F65F2BF9FACC00A169D5 /* TaskCell.swift in Sources */,
+				E238F66F2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld in Sources */,
 				E238F6642BFA059D00A169D5 /* RoundedButton.swift in Sources */,
 				E238F64F2BF8DF2300A169D5 /* ToDoViewController.swift in Sources */,
 				E238F64B2BF8DF2300A169D5 /* AppDelegate.swift in Sources */,
@@ -407,6 +419,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E238F66D2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E238F66E2BFB4E9100A169D5 /* TasksDataModel.xcdatamodel */,
+			);
+			currentVersion = E238F66E2BFB4E9100A169D5 /* TasksDataModel.xcdatamodel */;
+			path = TasksDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E238F63F2BF8DF2300A169D5 /* Project object */;
 }
