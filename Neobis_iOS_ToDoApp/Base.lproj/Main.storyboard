@@ -20,25 +20,59 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S94-JM-gGS">
-                                <rect key="frame" x="159" y="408" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UdM-MX-hIu">
+                                <rect key="frame" x="333" y="662" width="50" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-6K-sg4" customClass="RoundedButton" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="683-yI-pwW"/>
+                                            <constraint firstAttribute="height" constant="50" id="Uue-Hh-Cm6"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="Pen.png"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S94-JM-gGS" customClass="RoundedButton" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="50" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="TVS-uO-RKV"/>
+                                            <constraint firstAttribute="height" constant="50" id="rKi-t0-t7K"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" systemColor="systemGreenColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="Add.png"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nUL-aI-1BP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CWz-hs-NUh" secondAttribute="bottom" id="D8b-VX-FTo"/>
+                            <constraint firstItem="CWz-hs-NUh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8ns-RS-62d"/>
+                            <constraint firstAttribute="bottom" secondItem="UdM-MX-hIu" secondAttribute="bottom" constant="80" id="AMF-cE-NpG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UdM-MX-hIu" secondAttribute="trailing" constant="10" id="E4N-vf-Dqd"/>
+                            <constraint firstItem="CWz-hs-NUh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jwm-xf-J14"/>
                             <constraint firstItem="CWz-hs-NUh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="esx-FK-NUh"/>
                             <constraint firstItem="CWz-hs-NUh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pcE-9i-yo2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CWz-hs-NUh" secondAttribute="trailing" id="qhu-WU-3mY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zgB-kr-1JO"/>
                     <connections>
                         <outlet property="toDoTableView" destination="CWz-hs-NUh" id="gPT-QN-ch2"/>
+                        <segue destination="x9F-Jc-5cl" kind="presentation" identifier="editTask" id="PmE-5G-q2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -68,20 +102,85 @@
             <objects>
                 <viewController id="EgW-OM-uP0" customClass="AddTaskViewController" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qnn-Ph-aXH">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FU4-6r-ZfD">
+                                <rect key="frame" x="20" y="76" width="353" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tZX-fu-mqY">
+                                <rect key="frame" x="20" y="130" width="353" height="607"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-KW-NMi">
+                                <rect key="frame" x="160" y="757" width="73.333333333333314" height="35"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="EgW-OM-uP0" eventType="touchUpInside" id="TLj-ff-gXX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Q7b-jZ-Z2g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tZX-fu-mqY" firstAttribute="leading" secondItem="Q7b-jZ-Z2g" secondAttribute="leading" constant="20" id="7GJ-wv-BMY"/>
+                            <constraint firstItem="tZX-fu-mqY" firstAttribute="top" secondItem="FU4-6r-ZfD" secondAttribute="bottom" constant="20" id="8Fs-U4-CKA"/>
+                            <constraint firstItem="Q7b-jZ-Z2g" firstAttribute="bottom" secondItem="aA9-KW-NMi" secondAttribute="bottom" constant="50" id="Mxi-Sp-6sm"/>
+                            <constraint firstItem="aA9-KW-NMi" firstAttribute="centerX" secondItem="qnn-Ph-aXH" secondAttribute="centerX" id="SQz-Hc-RLZ"/>
+                            <constraint firstItem="Q7b-jZ-Z2g" firstAttribute="trailing" secondItem="FU4-6r-ZfD" secondAttribute="trailing" constant="20" id="bob-87-ezh"/>
+                            <constraint firstItem="FU4-6r-ZfD" firstAttribute="top" secondItem="Q7b-jZ-Z2g" secondAttribute="top" constant="20" id="qdR-MZ-xvW"/>
+                            <constraint firstItem="aA9-KW-NMi" firstAttribute="top" secondItem="tZX-fu-mqY" secondAttribute="bottom" constant="20" id="syD-gc-xng"/>
+                            <constraint firstItem="Q7b-jZ-Z2g" firstAttribute="trailing" secondItem="tZX-fu-mqY" secondAttribute="trailing" constant="20" id="wxI-fZ-1ul"/>
+                            <constraint firstItem="FU4-6r-ZfD" firstAttribute="leading" secondItem="Q7b-jZ-Z2g" secondAttribute="leading" constant="20" id="zhH-OO-RnE"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Hvg-pa-ct0"/>
+                    <connections>
+                        <outlet property="taskDescriptionView" destination="tZX-fu-mqY" id="Vwm-XN-rSo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Aw-MW-oT2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="4"/>
+            <point key="canvasLocation" x="2710.6870229007632" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="80c-CY-sOp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x9F-Jc-5cl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZX3-9j-gjL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EgW-OM-uP0" kind="relationship" relationship="rootViewController" id="gvF-fY-HO8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUu-4d-CTn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1783.9694656488548" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

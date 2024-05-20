@@ -17,7 +17,6 @@ class ToDoViewController: UIViewController{
         setupNavBar()
         toDoTableView.delegate = self
         toDoTableView.dataSource = self
-        navigationItem.title = "ToDoApp"
     }
     
     func setupNavBar(){
@@ -25,8 +24,14 @@ class ToDoViewController: UIViewController{
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.sizeToFit()
         toDoTableView.contentInsetAdjustmentBehavior = .never
+        navigationItem.title = "ToDoApp"
     }
     
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        let vc = AddTaskViewController()
+        self.performSegue(withIdentifier: "editTask", sender: self)
+
+    }
 }
 
 extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {

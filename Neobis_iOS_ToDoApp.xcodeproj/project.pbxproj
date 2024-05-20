@@ -16,6 +16,8 @@
 		E238F65F2BF9FACC00A169D5 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F65E2BF9FACC00A169D5 /* TaskCell.swift */; };
 		E238F6612BFA051C00A169D5 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6602BFA051C00A169D5 /* AddTaskViewController.swift */; };
 		E238F6642BFA059D00A169D5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6632BFA059D00A169D5 /* RoundedButton.swift */; };
+		E238F66A2BFA37C800A169D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6692BFA37C800A169D5 /* Constants.swift */; };
+		E238F66C2BFA37F700A169D5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F66B2BFA37F700A169D5 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		E238F65E2BF9FACC00A169D5 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		E238F6602BFA051C00A169D5 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		E238F6632BFA059D00A169D5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		E238F6692BFA37C800A169D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E238F66B2BFA37F700A169D5 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +66,9 @@
 		E238F6492BF8DF2300A169D5 /* Neobis_iOS_ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
-				E238F6662BFA05B400A169D5 /* CustomCell */,
+				E238F6682BFA37BC00A169D5 /* Utilities */,
+				E238F6672BFA369800A169D5 /* CustomClasses */,
 				E238F6652BFA05A300A169D5 /* ViewControllers */,
-				E238F6622BFA058200A169D5 /* CustomButton */,
 				E238F64A2BF8DF2300A169D5 /* AppDelegate.swift */,
 				E238F64C2BF8DF2300A169D5 /* SceneDelegate.swift */,
 				E238F6502BF8DF2300A169D5 /* Main.storyboard */,
@@ -73,14 +77,6 @@
 				E238F6582BF8DF2600A169D5 /* Info.plist */,
 			);
 			path = Neobis_iOS_ToDoApp;
-			sourceTree = "<group>";
-		};
-		E238F6622BFA058200A169D5 /* CustomButton */ = {
-			isa = PBXGroup;
-			children = (
-				E238F6632BFA059D00A169D5 /* RoundedButton.swift */,
-			);
-			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		E238F6652BFA05A300A169D5 /* ViewControllers */ = {
@@ -92,12 +88,22 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		E238F6662BFA05B400A169D5 /* CustomCell */ = {
+		E238F6672BFA369800A169D5 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E238F6632BFA059D00A169D5 /* RoundedButton.swift */,
 				E238F65E2BF9FACC00A169D5 /* TaskCell.swift */,
 			);
-			path = CustomCell;
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		E238F6682BFA37BC00A169D5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E238F66B2BFA37F700A169D5 /* Extension.swift */,
+				E238F6692BFA37C800A169D5 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +181,10 @@
 				E238F6642BFA059D00A169D5 /* RoundedButton.swift in Sources */,
 				E238F64F2BF8DF2300A169D5 /* ToDoViewController.swift in Sources */,
 				E238F64B2BF8DF2300A169D5 /* AppDelegate.swift in Sources */,
+				E238F66A2BFA37C800A169D5 /* Constants.swift in Sources */,
 				E238F64D2BF8DF2300A169D5 /* SceneDelegate.swift in Sources */,
 				E238F6612BFA051C00A169D5 /* AddTaskViewController.swift in Sources */,
+				E238F66C2BFA37F700A169D5 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
