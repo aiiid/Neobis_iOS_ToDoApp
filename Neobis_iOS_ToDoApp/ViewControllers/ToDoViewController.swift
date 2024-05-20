@@ -8,33 +8,68 @@
 import UIKit
 import CoreData
 
-class ToDoViewController: UIViewController{
+protocol EditTaskDelegate{
+    func didEditTask(title: String, description: String, isDone: Bool)
+}
 
+class ToDoViewController: UIViewController{
+    
+    @IBOutlet weak var editButton: RoundedButton!
+    @IBOutlet weak var addButton: RoundedButton!
+    @IBOutlet weak var cancelButton: RoundedButton!
+    
     @IBOutlet weak var toDoTableView: UITableView!
+    var footerView: UIView!
+    
     var taskArray = [Task]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupNavBar()
-        toDoTableView.delegate = self
-        toDoTableView.dataSource = self
+        setupTableView()
+        setupFooterView()
         loadTasks()
-        //addTaskVC.delegate = self
     }
     
     func setupNavBar(){
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.sizeToFit()
-        toDoTableView.contentInsetAdjustmentBehavior = .never
         navigationItem.title = "ToDoApp"
     }
     
+    func setupTableView(){
+        cancelButton.alpha = 0
+        toDoTableView.tableFooterView = nil
+        toDoTableView.delegate = self
+        toDoTableView.dataSource = self
+        toDoTableView.allowsSelectionDuringEditing = true
+        toDoTableView.contentInsetAdjustmentBehavior = .never
+    }
     
+    func setupFooterView(){
+        // Initialize the footer view
+        footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        
+        // Add a label to the footer view
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: footerView.frame.width, height: footerView.frame.height))
+        label.text = "Press + button to add a new task to the list"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14) // Set the font size to 16 points
+        label.textColor = .lightGray
+
+        footerView.addSubview(label)
+        
+        // Set the table view footer view
+        toDoTableView.tableFooterView = footerView
+    }
+    
+    
+    //MARK: - CoreData actions
     
     func saveTasks(){
         do{
@@ -48,6 +83,8 @@ class ToDoViewController: UIViewController{
     
     func loadTasks(){
         let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        
         do{
             taskArray = try context.fetch(request)
         }catch{
@@ -56,8 +93,28 @@ class ToDoViewController: UIViewController{
         toDoTableView.reloadData()
     }
     
+    //MARK: - Button actions
+    
     @IBAction func addButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "editTask", sender: self)
+    }
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        toDoTableView.setEditing(true, animated: true)
+        addButton.animateOut()
+        editButton.animateOut()
+        cancelButton.animateIn()
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: RoundedButton) {
+        print("cancel")
+        DispatchQueue.main.async(execute: {
+            self.toDoTableView.setEditing(false, animated: true)
+        })
+        cancelButton.animateOut()
+        editButton.animateIn()
+        addButton.animateIn()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,10 +125,9 @@ class ToDoViewController: UIViewController{
             }
         }
     }
-
- 
 }
 
+//MARK: - Extensions
 extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
@@ -90,28 +146,59 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    //Table editing
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
-        taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
-        saveTasks()
-        
-        // Deselect the row
-        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView.isEditing {
+          
+            // Perform the segue if the table view is in editing mode
+            print("select")
+            performSegue(withIdentifier: "editTask", sender: self)
+        }else{
+            taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
+            saveTasks()
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Allow row deletion only when editing mode is enabled
+        return tableView.isEditing
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (contextualAction, 
-                                                                                          view,
-                                                                                          isActionPerformed: (Bool) -> ()) in
-            self.context.delete(self.taskArray[indexPath.row])
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completionHandler) in
+            // Perform the deletion
+            let taskToDelete = self.taskArray[indexPath.row]
+            self.context.delete(taskToDelete)
             self.taskArray.remove(at: indexPath.row)
-            self.toDoTableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             self.saveTasks()
-
-        })
-        return UISwipeActionsConfiguration(actions: [delete])
+            
+            // Call the completion handler after the action is performed
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-
+    
+    // Enable row reordering only when editing mode is enabled
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
+    
+    // Handle row reordering
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedTask = taskArray.remove(at: sourceIndexPath.row)
+        taskArray.insert(movedTask, at: destinationIndexPath.row)
+        
+        // Update order attribute of tasks
+        for (index, task) in taskArray.enumerated() {
+            task.order = Int16(index)  // Assuming order starts from 0
+        }
+        
+        saveTasks()
+    }
 }
 
 extension ToDoViewController: AddTaskDelegate{
@@ -121,6 +208,14 @@ extension ToDoViewController: AddTaskDelegate{
         newTask.taskTitle = title
         newTask.taskDescription = description
         newTask.isDone = isDone
+        
+        // Determine the order for the new task
+        if taskArray.isEmpty {
+            newTask.order = 0 // Add at the top if the array is empty
+        } else {
+            // Add at the bottom of the list
+            newTask.order = Int16(taskArray.count)
+        }
         
         saveTasks()
         loadTasks()

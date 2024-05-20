@@ -20,6 +20,22 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olW-DN-8Fp" customClass="RoundedButton" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target">
+                                <rect key="frame" x="273" y="693" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6Za-Bt-H5y"/>
+                                    <constraint firstAttribute="width" constant="50" id="XdR-qk-xm6"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="Cancel.png"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lbG-qI-Qld"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UdM-MX-hIu">
                                 <rect key="frame" x="333" y="662" width="50" height="110"/>
                                 <subviews>
@@ -35,6 +51,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="Pen.png"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ew0-yO-S0k"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S94-JM-gGS" customClass="RoundedButton" customModule="Neobis_iOS_ToDoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="60" width="50" height="50"/>
@@ -65,12 +84,17 @@
                             <constraint firstAttribute="bottom" secondItem="UdM-MX-hIu" secondAttribute="bottom" constant="80" id="AMF-cE-NpG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UdM-MX-hIu" secondAttribute="trailing" constant="10" id="E4N-vf-Dqd"/>
                             <constraint firstItem="CWz-hs-NUh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jwm-xf-J14"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="olW-DN-8Fp" secondAttribute="trailing" constant="70" id="aA4-Wc-3pY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="olW-DN-8Fp" secondAttribute="bottom" constant="75" id="bhP-or-6ck"/>
                             <constraint firstItem="CWz-hs-NUh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="esx-FK-NUh"/>
                             <constraint firstItem="CWz-hs-NUh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pcE-9i-yo2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zgB-kr-1JO"/>
                     <connections>
+                        <outlet property="addButton" destination="S94-JM-gGS" id="ock-wh-hia"/>
+                        <outlet property="cancelButton" destination="olW-DN-8Fp" id="mr9-sj-E9p"/>
+                        <outlet property="editButton" destination="Txh-6K-sg4" id="YRd-2t-4Rh"/>
                         <outlet property="toDoTableView" destination="CWz-hs-NUh" id="gPT-QN-ch2"/>
                         <segue destination="x9F-Jc-5cl" kind="presentation" identifier="editTask" id="PmE-5G-q2U"/>
                     </connections>

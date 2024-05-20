@@ -67,8 +67,10 @@ class AddTaskViewController: UIViewController {
     
     
     @objc func saveTapped(){
-        if let title = taskTitleTextField.text {
-            delegate?.didSaveTask(title: title, description: taskDescriptionView.text, isDone: false)
+        var description = taskDescriptionView.text == "Task description" ? "" : taskDescriptionView.text
+
+        if let title = taskTitleTextField.text, let description = description {
+            delegate?.didSaveTask(title: title, description: description, isDone: false)
         }
 
         dismiss(animated: true, completion: nil)
@@ -95,5 +97,13 @@ extension AddTaskViewController: UITextViewDelegate{
         if taskDescriptionView.text.isEmpty{
             setupTextView()
         }
+    }
+}
+
+extension AddTaskViewController: EditTaskDelegate{
+    func didEditTask(title: String, description: String, isDone: Bool) {
+        taskTitleTextField.text = title
+        taskDescriptionView.text = description
+        
     }
 }

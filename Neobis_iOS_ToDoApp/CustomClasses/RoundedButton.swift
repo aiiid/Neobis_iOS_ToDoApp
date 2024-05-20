@@ -15,11 +15,6 @@ class RoundedButton: UIButton {
         }
     }
     
-    override init(frame: CGRect){
-        super.init(frame: frame)
-        commonInit()
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
@@ -44,7 +39,6 @@ class RoundedButton: UIButton {
             imageView.image = image
             imageView.setImageColor(color: .white)
         }
-       
         
         // Set image view constraints to center it inside the button
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,12 +50,27 @@ class RoundedButton: UIButton {
         ])
     }
     private func setupAppearance() {
-        //          layer.cornerRadius = 15 // Adjust corner radius as needed
         layer.cornerRadius = bounds.size.height / 2
-        //backgroundColor = .systemBlue // Set your desired background color
-        //tintColor = .white
         setTitleColor(.white, for: .normal) // Set the title color if there's any title
         clipsToBounds = true
+    }
+    
+    func animateIn(completion: (() -> Void)? = nil) {
+        self.isEnabled = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.alpha = 1
+        }, completion: { _ in
+            completion?()
+        })
+    }
+    
+    func animateOut(completion: (() -> Void)? = nil) {
+        self.isEnabled = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.alpha = 0
+        }, completion: { _ in
+            completion?()
+        })
     }
 }
 
