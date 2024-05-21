@@ -8,9 +8,6 @@
 import UIKit
 import CoreData
 
-protocol EditTaskDelegate{
-    func didEditTask(title: String, description: String, isDone: Bool)
-}
 
 class ToDoViewController: UIViewController{
     
@@ -19,19 +16,14 @@ class ToDoViewController: UIViewController{
     @IBOutlet weak var cancelButton: RoundedButton!
     
     @IBOutlet weak var toDoTableView: UITableView!
-    var footerView: UIView!
     
     var taskArray = [Task]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        setupNavBar()
-        setupTableView()
-        setupFooterView()
+        setupUI()
         loadTasks()
     }
     
@@ -53,6 +45,7 @@ class ToDoViewController: UIViewController{
     
     func setupFooterView(){
         // Initialize the footer view
+        var footerView: UIView!
         footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
         
         // Add a label to the footer view
@@ -61,11 +54,17 @@ class ToDoViewController: UIViewController{
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14) // Set the font size to 16 points
         label.textColor = .lightGray
-
+        
         footerView.addSubview(label)
         
         // Set the table view footer view
         toDoTableView.tableFooterView = footerView
+    }
+    
+    func setupUI(){
+        setupNavBar()
+        setupTableView()
+        setupFooterView()
     }
     
     
@@ -122,8 +121,13 @@ class ToDoViewController: UIViewController{
             if let navigationController = segue.destination as? UINavigationController,
                let addTaskVC = navigationController.topViewController as? AddTaskViewController {
                 addTaskVC.delegate = self
+                if let selectedTask = sender as? Task {
+                    addTaskVC.task = selectedTask
+                    addTaskVC.editDelegate = self
+                }
             }
         }
+        
     }
 }
 
@@ -149,10 +153,10 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     //Table editing
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
-          
+            let selectedTask = taskArray[indexPath.row]
             // Perform the segue if the table view is in editing mode
             print("select")
-            performSegue(withIdentifier: "editTask", sender: self)
+            performSegue(withIdentifier: "editTask", sender: selectedTask)
         }else{
             taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
             saveTasks()
@@ -201,21 +205,25 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ToDoViewController: AddTaskDelegate{
+extension ToDoViewController: AddTaskDelegate, EditTaskDelegate{
+    func didDeleteTask(_ task: Task) {
+        context.delete(task)
+        saveTasks()
+        loadTasks()
+    }
+    
+    func didEditTask(task: Task) {
+        saveTasks()
+        loadTasks()
+    }
+    
     func didSaveTask(title: String, description: String, isDone: Bool) {
         print("did save task")
         let newTask = Task(context: context)
         newTask.taskTitle = title
         newTask.taskDescription = description
         newTask.isDone = isDone
-        
-        // Determine the order for the new task
-        if taskArray.isEmpty {
-            newTask.order = 0 // Add at the top if the array is empty
-        } else {
-            // Add at the bottom of the list
-            newTask.order = Int16(taskArray.count)
-        }
+        newTask.order = Int16(taskArray.count)
         
         saveTasks()
         loadTasks()

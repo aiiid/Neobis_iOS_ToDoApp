@@ -68,7 +68,7 @@
                                             <color key="titleColor" systemColor="systemGreenColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="Add.png"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="AddTask.png"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nUL-aI-1BP"/>
