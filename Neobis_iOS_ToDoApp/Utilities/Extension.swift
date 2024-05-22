@@ -36,3 +36,7 @@ extension UIImageView {
     self.tintColor = color
   }
 }
+
+extension Notification.Name{
+    static let myLanguageNotif = Notification.Name("Language Changed")
+}

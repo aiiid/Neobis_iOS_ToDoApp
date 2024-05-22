@@ -16,10 +16,11 @@ class AddTaskViewController: UIViewController {
     weak var delegate: AddTaskDelegate?
     var editDelegate: EditTaskDelegate?
     var task: Task?
+    let language = LanguageManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupUI()
         // Populate task details if editing
         if let task = task {
@@ -37,17 +38,30 @@ class AddTaskViewController: UIViewController {
         taskDescriptionView.layer.borderWidth = 0.5
         taskDescriptionView.layer.cornerRadius = 5.0
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveTapped))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
+        let saveButton = UIBarButtonItem(
+            title: language.localizedString(for: "taskEditSave"),
+            style: .plain,
+            target: self,
+            action: #selector(saveTapped)
+        )
+        let cancelButton = UIBarButtonItem(
+            title: language.localizedString(for: "taskEditCancel"),
+            style: .plain,
+            target: self,
+            action: #selector(cancelTapped)
+        )
         cancelButton.tintColor = .systemRed
         
+        deleteButton.titleLabel?.text = language.localizedString(for: "taskEditDelete")
+        
+        taskTitleTextField.placeholder =  language.localizedString(for: "taskTitlePlaceholder")
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = cancelButton
     }
     
     func setupTextView() {
         if taskDescriptionView.text.isEmpty {
-            taskDescriptionView.text = "Task description"
+            taskDescriptionView.text = language.localizedString(for: "taskDescriptionPlaceholder")
             taskDescriptionView.textColor = UIColor.lightGray
         }
     }
@@ -60,7 +74,7 @@ class AddTaskViewController: UIViewController {
         
         guard var description = taskDescriptionView.text else { return }
         
-        if description == "Task description" {
+        if description == language.localizedString(for: "taskDescriptionPlaceholder") {
                     description = ""
                 }
         

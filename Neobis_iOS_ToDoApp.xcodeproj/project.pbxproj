@@ -20,6 +20,9 @@
 		E238F66C2BFA37F700A169D5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F66B2BFA37F700A169D5 /* Extension.swift */; };
 		E238F66F2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E238F66D2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld */; };
 		E238F6722BFCA2D400A169D5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6712BFCA2D400A169D5 /* Protocols.swift */; };
+		E238F6742BFCB46600A169D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6732BFCB46600A169D5 /* SettingsViewController.swift */; };
+		E238F6762BFDD15800A169D5 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238F6752BFDD15800A169D5 /* LanguageManager.swift */; };
+		E238F67A2BFDDC5B00A169D5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E238F6792BFDDC5B00A169D5 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		E238F66B2BFA37F700A169D5 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E238F66E2BFB4E9100A169D5 /* TasksDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TasksDataModel.xcdatamodel; sourceTree = "<group>"; };
 		E238F6712BFCA2D400A169D5 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		E238F6732BFCB46600A169D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E238F6752BFDD15800A169D5 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		E238F6792BFDDC5B00A169D5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		E238F6492BF8DF2300A169D5 /* Neobis_iOS_ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				E238F6782BFDDC3F00A169D5 /* Resource */,
 				E238F6702BFB4F9500A169D5 /* DataModel */,
 				E238F6682BFA37BC00A169D5 /* Utilities */,
 				E238F6672BFA369800A169D5 /* CustomClasses */,
@@ -89,6 +96,7 @@
 			children = (
 				E238F64E2BF8DF2300A169D5 /* ToDoViewController.swift */,
 				E238F6602BFA051C00A169D5 /* AddTaskViewController.swift */,
+				E238F6732BFCB46600A169D5 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -108,6 +116,7 @@
 				E238F66B2BFA37F700A169D5 /* Extension.swift */,
 				E238F6692BFA37C800A169D5 /* Constants.swift */,
 				E238F6712BFCA2D400A169D5 /* Protocols.swift */,
+				E238F6752BFDD15800A169D5 /* LanguageManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -118,6 +127,14 @@
 				E238F66D2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		E238F6782BFDDC3F00A169D5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E238F6792BFDDC5B00A169D5 /* Localizable.xcstrings */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +179,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = E238F63E2BF8DF2300A169D5;
 			productRefGroup = E238F6482BF8DF2300A169D5 /* Products */;
@@ -180,6 +198,7 @@
 			files = (
 				E238F6572BF8DF2600A169D5 /* LaunchScreen.storyboard in Resources */,
 				E238F6542BF8DF2600A169D5 /* Assets.xcassets in Resources */,
+				E238F67A2BFDDC5B00A169D5 /* Localizable.xcstrings in Resources */,
 				E238F6522BF8DF2300A169D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +212,8 @@
 			files = (
 				E238F65F2BF9FACC00A169D5 /* TaskCell.swift in Sources */,
 				E238F66F2BFB4E9100A169D5 /* TasksDataModel.xcdatamodeld in Sources */,
+				E238F6742BFCB46600A169D5 /* SettingsViewController.swift in Sources */,
+				E238F6762BFDD15800A169D5 /* LanguageManager.swift in Sources */,
 				E238F6642BFA059D00A169D5 /* RoundedButton.swift in Sources */,
 				E238F64F2BF8DF2300A169D5 /* ToDoViewController.swift in Sources */,
 				E238F64B2BF8DF2300A169D5 /* AppDelegate.swift in Sources */,

@@ -20,18 +20,45 @@ class ToDoViewController: UIViewController{
     var taskArray = [Task]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let language = LanguageManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         loadTasks()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(languageChanged),
+            name: Notification.Name.myLanguageNotif,
+            object: nil
+        )
     }
+    deinit {
+            NotificationCenter.default
+                .removeObserver(
+                    self,
+                    name:  NSNotification.Name(
+                        "Language Changed"
+                    ),
+                    object: nil
+                )
+        }
     
     func setupNavBar(){
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.sizeToFit()
-        navigationItem.title = "ToDoApp"
+        navigationItem.title = language.localizedString(for: "appTitle")
+        
+        
+        let settingsButton = UIBarButtonItem(
+            image: UIImage(systemName: "gearshape"),
+            style: .plain,
+            target: self,
+            action: #selector(settingsButtonTapped)
+        )
+        navigationItem.rightBarButtonItem = settingsButton
     }
     
     func setupTableView(){
@@ -46,11 +73,25 @@ class ToDoViewController: UIViewController{
     func setupFooterView(){
         // Initialize the footer view
         var footerView: UIView!
-        footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        footerView = UIView(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: view.frame.width,
+                height: 50
+            )
+        )
         
         // Add a label to the footer view
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: footerView.frame.width, height: footerView.frame.height))
-        label.text = "Press + button to add a new task to the list"
+        let label = UILabel(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: footerView.frame.width,
+                height: footerView.frame.height
+            )
+        )
+        label.text = language.localizedString(for: "footerText")
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14) // Set the font size to 16 points
         label.textColor = .lightGray
@@ -67,6 +108,10 @@ class ToDoViewController: UIViewController{
         setupFooterView()
     }
     
+    @objc func languageChanged(){
+        navigationItem.title = language.localizedString(for: "appTitle")
+        setupUI()
+    }
     
     //MARK: - CoreData actions
     
@@ -106,13 +151,18 @@ class ToDoViewController: UIViewController{
     }
     
     @IBAction func cancelButtonPressed(_ sender: RoundedButton) {
-        print("cancel")
         DispatchQueue.main.async(execute: {
             self.toDoTableView.setEditing(false, animated: true)
         })
         cancelButton.animateOut()
         editButton.animateIn()
         addButton.animateIn()
+        
+    }
+    
+    @objc func settingsButtonTapped(){
+        let settingsVC = SettingsViewController() // Instantiate the settings view controller
+        navigationController?.pushViewController(settingsVC, animated: true)
         
     }
     

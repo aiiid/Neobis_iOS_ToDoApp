@@ -167,6 +167,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Hvg-pa-ct0"/>
                     <connections>
+                        <outlet property="deleteButton" destination="aA9-KW-NMi" id="6Q5-E2-vW9"/>
                         <outlet property="taskDescriptionView" destination="tZX-fu-mqY" id="Vwm-XN-rSo"/>
                         <outlet property="taskTitleTextField" destination="FU4-6r-ZfD" id="Ujp-Gf-Wue"/>
                     </connections>
