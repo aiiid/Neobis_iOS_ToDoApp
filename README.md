@@ -5,8 +5,8 @@ This app is a basic To-Do app designed to help users keep track of their tasks.
 It offers features such as adding, editing, deleting, and reordering tasks. 
 Built using `UIKit`, `CoreData` for data storage, and `UserDefaults` for saving app preferences like language and light mode settings.
 
-<img src="(https://github.com/aiiid/Neobis_iOS_ToDoApp/assets/123296393/d0a9e5f1-af5c-4738-89d0-95c0cdf3e9e7)" alt="App Screenshot_1" width="300">
-<img src="(https://github.com/aiiid/Neobis_iOS_ToDoApp/assets/123296393/f2eee94a-3b4c-4d14-aada-2c3672f93b85)" alt="App Screenshot_2" width="300">
+<img src="https://github.com/aiiid/Neobis_iOS_ToDoApp/assets/123296393/d0a9e5f1-af5c-4738-89d0-95c0cdf3e9e7" alt="App Screenshot_1" width="300">
+<img src="https://github.com/aiiid/Neobis_iOS_ToDoApp/assets/123296393/f2eee94a-3b4c-4d14-aada-2c3672f93b85" alt="App Screenshot_2" width="300">
 
 ## Features
 - **ToDo View**: View all tasks with their respective status (done/not done).
